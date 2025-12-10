@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Suvorova - UX Research Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --background: #ffffff;
+            --card-background: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #3b82f6;
+            --food-color: #f97316;
+            --ride-color: #8b5cf6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .contacts {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: var(--card-background);
+        }
+
+        .nav-link.active {
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        /* About Section */
+        .about-intro {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            background: var(--card-background);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .language-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+
+        .language-flag {
+            font-size: 1.2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .skill-badge {
+            background: #f8f9fa;
+            color: #6c757d;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            font-weight: 400;
+            cursor: default;
+            user-select: none;
+        }
+
+        /* Case Studies Section */
+        #cases {
+            padding-top: 40px;
+        }
+
+        .industry-group {
+            margin-bottom: 50px;
+        }
+
+        .industry-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .industry-emoji {
+            font-size: 1.8rem;
+        }
+
+        .industry-title {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .industry-count {
+            background: var(--card-background);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-card.food-delivery {
+            border-color: var(--food-color);
+        }
+
+        .case-card.ride-hailing {
+            border-color: var(--ride-color);
+        }
+
+        .case-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-card.hidden {
+            display: none;
+        }
+
+        .case-header {
+            padding: 15px;
+            color: white;
+        }
+
+        .case-card.food-delivery .case-header {
+            background: linear-gradient(135deg, #fb923c, #f97316);
+        }
+
+        .case-card.ride-hailing .case-header {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        }
+
+        .case-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .case-body {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-section {
+            margin-bottom: 12px;
+        }
+
+        .case-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-section h4 {
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .case-section p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .case-results {
+            background: var(--card-background);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .case-results ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .case-results li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .case-results li:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-results li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 12px 15px;
+            background: var(--card-background);
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .case-tag {
+            background: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .show-more-btn {
+            background: var(--card-background);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .show-more-btn:hover {
+            background: white;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .show-more-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 30px;
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-header.food-delivery {
+            background: linear-gradient(135deg, #fb923c, #f97316);
+        }
+
+        .modal-header.ride-hailing {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 0.9rem;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="container">
+                <h1>Maria Suvorova</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">UX Researcher</p>
+                <div class="contacts">
+                    <a href="https://www.linkedin.com/in/maria-suvorova-729999232/" class="contact-link" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:masch.suworowa2011@gmail.com" class="contact-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>
+                        </svg>
+                        masch.suworowa2011@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a class="nav-link active" data-section="overview">About Me</a></li>
+                <li><a class="nav-link" data-section="cases">Case Studies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="overview" class="active">
+            <div class="container">
+                
+                <div class="about-intro">
+                    <p>I'm a UX researcher passionate about understanding user behavior across diverse cultural contexts and creating impactful solutions for global markets. With extensive experience in international research, I specialize in conducting studies across emerging markets in Africa, Latin America, and Eastern Europe. My expertise spans both food delivery and ride-hailing industries, where I've led research initiatives that directly improved user experience and business metrics.</p>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">User Interviews</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Countries Researched</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Working Languages</div>
+                        <div class="language-list">
+                            <div class="language-item">
+                                <span class="language-flag">🇬🇧</span>
+                                <span>EN</span>
+                            </div>
+                            <div class="language-item">
+                                <span class="language-flag">🇪🇸</span>
+                                <span>ES</span>
+                            </div>
+                            <div class="language-item">
+                                <span class="language-flag">🇷🇺</span>
+                                <span>RU</span>
+                            </div>
+                            <div class="language-item">
+                                <span class="language-flag">🇫🇷</span>
+                                <span>FR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin: 40px 0 20px; color: var(--text-primary);">Competencies</h3>
+                <div class="skills-grid">
+                    <div class="skill-badge">Usability Testing</div>
+                    <div class="skill-badge">In-depth Interviews</div>
+                    <div class="skill-badge">Focus Groups</div>
+                    <div class="skill-badge">Diary Studies</div>
+                    <div class="skill-badge">Competitive Analysis</div>
+                    <div class="skill-badge">International Research</div>
+                    <div class="skill-badge">Prototype Testing</div>
+                    <div class="skill-badge">Journey Mapping</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cases">
+            <div class="container">
+                <div id="casesContainer">
+                    <!-- Industry groups will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for case details -->
+    <div class="modal" id="caseModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-header" id="modalHeader">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <span class="case-industry" id="modalIndustry"></span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cases = [
+            {
+                title: "UX Research of Address Components in Food Ordering Flow",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "High user cancellation rates in Africa, particularly in Côte d'Ivoire, causing significant business costs. Part of these were related to incorrect address tool functionality.",
+                actions: "12 interviews with usability tests + diary study with 6 couriers",
+                results: "User cancellations decreased by 37% thanks to initiatives created based on research results. Found user evidence of technical issues, UX problems in the app, gaps in app adaptation for the local market. The product team launched multiple improvements including: fixed pin shifting to roads, implemented address sheets, address request in interface, geo-sharing in search and map, new modal for address saving on tracking.",
+                keyResults: [
+                    "37% decrease in user cancellations",
+                    "Fixed critical address tool bugs"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "international", "africa"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "UX Research of Food Ordering Flow in Bolivia",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "Launching in a new country, testing to find errors, inaccuracies and ambiguities for users",
+                actions: "6 in-depth interviews and usability testing + competitors",
+                results: "Created a backlog of improvements for the country: need for local filters for dishes (chicken, meat), QR code payment functionality required, demand for pharmacy orders, demand for multi-orders",
+                keyResults: [
+                    "Identified 4 critical localization gaps",
+                    "Created country-specific backlog"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "international", "latam"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Hot Dish Selection Attributes Research",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "To form the catalog tree for dishes and their further tagging, we needed to find out what criteria people use to choose hot dishes",
+                actions: "Focus groups with food delivery users + projective methods",
+                results: "Results formed the basis of the updated category tree and tags, also provided a list of hypotheses for further research into combo meals. Artifact: Miro board",
+                keyResults: [
+                    "Redesigned catalog taxonomy",
+                    "Improved dish discoverability"
+                ],
+                industry: "Food delivery",
+                tags: ["focus-groups", "russia", "miro"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "New User Marketing Communications",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "60% of users who didn't apply the newcomer promo code 'Didn't know about it' according to survey results. Task - study newcomer behavior and their interaction with promo communications",
+                actions: "12 usability tests (6 restaurants, 6 retail) + competitor analysis",
+                results: "List of initiatives to improve newcomer flow and promo code usage (e.g., placed promo code in promotions section, test group showed +3% utilization). Found critical problem: unauthorized users don't see promotions. List of hypotheses for analytics verification",
+                keyResults: [
+                    "+3% promo code utilization",
+                    "Fixed critical visibility issue"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "marketing", "competitors"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Store Screen and Catalog Prototypes Research",
+                emoji: "🛒",
+                type: "retail",
+                context: "Study how customers use the store screen and catalog in various situations",
+                actions: "12 usability tests of our app + competitors",
+                results: "Received list of element-situation patterns, division of catalog types by order and purchase types. Based on these, formulated further development vector for catalogs in our app. Content team: Catalog for bulk purchases, Large package products, Brands in non-food, Cheese slicing options, Working with ready-made food to highlight freshness",
+                keyResults: [
+                    "Identified 5 catalog use patterns",
+                    "Created context-based navigation"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "retail", "competitors"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "QR Payment Research for Couriers in Côte d'Ivoire",
+                emoji: "📦",
+                type: "couriers",
+                context: "Launching payment flow, need to test understanding of new process",
+                actions: "6 usability tests on prototypes",
+                results: "Identified familiar and unfamiliar payment methods for couriers and payment behavior features for orders. Identified communication shortcomings about new payment method and unclear wording in flow.",
+                keyResults: [
+                    "Mapped payment behaviors",
+                    "Improved flow clarity"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "international", "africa"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Delivery Time Perception by Users in Côte d'Ivoire",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "Many customer order cancellations, does user perception of time affect them? Do they correctly read the time indicated in the app?",
+                actions: "6 usability tests with in-depth interviews",
+                results: "Described user time calculation schemes and main cancellation reasons (ordered during limited lunch break, restaurant delays cooking). They perceive time correctly, cancellations and order waiting experience are affected by other factors.",
+                keyResults: [
+                    "Identified cancellation triggers",
+                    "Validated time display clarity"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "international", "africa"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Advertising Communications Research in Cochabamba",
+                emoji: "🍕",
+                type: "restaurants",
+                context: "Gather feedback on advertising communications for city launch",
+                actions: "6 in-depth interviews with banner and video tests",
+                results: "Determined which elements fit local context and which didn't. Text phrase got good response, but advertised pizza while respondents wanted local dishes advertised. Found super-app concept unfamiliar to users, need more explicit functionality communications. Described user portrait and habits. Collected pool of events, city locations for service advertising and promotion ideas.",
+                keyResults: [
+                    "Localized marketing messages",
+                    "Identified promotion channels"
+                ],
+                industry: "Food delivery",
+                tags: ["ux", "marketing", "latam"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Finding New Research Contractors in Africa",
+                emoji: "🍕",
+                type: "operations",
+                context: "Need respondent recruitment in Africa, local team resources are limited, our budget too, so we can't afford full-cycle research from agencies. Existing partners refuse recruitment-only",
+                actions: "Search via LinkedIn, negotiations and documentation",
+                results: "Significantly optimized time and cost of international research. In the last project (Newcomer flow in Côte d'Ivoire) from brief to results presentation took 2.5 weeks and cost 960 USD. In comparison, working with agencies abroad takes 2 weeks just for respondent recruitment, average project costs around 10,000 USD.",
+                keyResults: [
+                    "90% cost reduction",
+                    "50% faster research cycles"
+                ],
+                industry: "Food delivery",
+                tags: ["ops", "international", "africa"],
+                filter: ["food-delivery"]
+            },
+            {
+                title: "Fleet Screen in PRO App",
+                emoji: "🚕",
+                type: "drivers",
+                context: "Increasing fleet penetration in the app through redesign: need to find out how drivers currently use it and why; what useful features to add",
+                actions: "7 usability tests with in-depth interviews",
+                results: "Identified current use cases, described current perception of fleet attributes by drivers. Formed pool of initiatives for improving fleet representation in app: Transparent cooperation conditions, Important fleet notifications, Fleet rating and dynamics, Fleet benchmark to others in geo, Leaderboards, Driver employment type reflection, Specific employee phone numbers, Specific instructions/processes, Rental status details",
+                keyResults: [
+                    "Mapped driver-fleet interactions",
+                    "Designed transparency features"
+                ],
+                industry: "Ride-hailing",
+                tags: ["ux", "drivers", "russia"],
+                filter: ["ride-hailing"]
+            },
+            {
+                title: "Photo Verification UX Research",
+                emoji: "🚕",
+                type: "drivers",
+                context: "Low success rate of completion, especially internationally. What behavioral/local features affect this?",
+                actions: "4 expert interviews in Pakistan and Peru + 7 drivers",
+                results: "Collected best practices from local fleets to implement in product. Identified several UI improvements for photo control. Changed orientation of some screens: +1pp Success Rate globally, Nepal skyrocketed: +5pp SR, Decrease in rejections for blurry/unreadable photos. Identified contextual problems list: overall complexity of registration flow, drivers lacking documents, no adaptation for local documents (electronic license in Peru: +2pp success rate)",
+                keyResults: [
+                    "+5pp success rate in Nepal",
+                    "+1pp global success rate"
+                ],
+                industry: "Ride-hailing",
+                tags: ["ux", "international", "mena"],
+                filter: ["ride-hailing"]
+            },
+            {
+                title: "Loyalty Program Offers Research",
+                emoji: "🚕",
+                type: "drivers",
+                context: "Need to gather current usage experience and desired benefits for drivers in Peru and Colombia",
+                actions: "8 in-depth interviews: 4 in Peru and 4 in Colombia",
+                results: "Got driver portraits in both countries, determined driver preferences in current service benefits, their problems working with us and competitors",
+                keyResults: [
+                    "Created driver personas",
+                    "Identified benefit preferences"
+                ],
+                industry: "Ride-hailing",
+                tags: ["interviews", "international", "latam"],
+                filter: ["ride-hailing"]
+            },
+            {
+                title: "QR Code Payment Process Research for Drivers",
+                emoji: "🚕",
+                type: "drivers",
+                context: "Rolled out QR code payment, but usage percentage is low. Identify barriers on driver side. Identify preferred flow variant.",
+                actions: "8 usability tests on prototypes with two flow variants",
+                results: "Critical barriers: Found payment process starts at wrong time in app, when user already paid driver directly in Yape app. Internal balance crediting is serious barrier for drivers (withdrawal only once a week). Offered discount on commission doesn't motivate drivers, sometimes misinterpreted as located on screen with passenger offer.",
+                keyResults: [
+                    "Identified timing conflicts",
+                    "Redesigned payment flow"
+                ],
+                industry: "Ride-hailing",
+                tags: ["ux", "international", "latam"],
+                filter: ["ride-hailing"]
+            },
+            {
+                title: "AI Bot Perception by Drivers in Colombia",
+                emoji: "🚕",
+                type: "drivers",
+                context: "Planning AI tool implementation in driver app, need to assess user readiness and provide recommendations for local features and usage scenarios",
+                actions: "7 in-depth interviews testing chat prototype and bot messages",
+                results: "Described current digital habits of drivers, AI usage experience. Formed recommendations list for AI tool implementation in PRO, described preferred TOV and scenario list where drivers are ready to use AI.",
+                keyResults: [
+                    "Assessed AI readiness",
+                    "Created implementation roadmap"
+                ],
+                industry: "Ride-hailing",
+                tags: ["ux", "international", "ai"],
+                filter: ["ride-hailing"]
+            }
+        ];
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const sectionId = this.dataset.section;
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Render cases grouped by industry
+        function renderCasesGrouped() {
+            const container = document.getElementById('casesContainer');
+            container.innerHTML = '';
+            
+            // Group cases by industry
+            const industries = {
+                'Food delivery': {
+                    emoji: '🍕',
+                    cases: cases.filter(c => c.industry === 'Food delivery')
+                },
+                'Ride-hailing': {
+                    emoji: '🚕',
+                    cases: cases.filter(c => c.industry === 'Ride-hailing')
+                }
+            };
+            
+            Object.entries(industries).forEach(([industryName, industryData]) => {
+                if (industryData.cases.length === 0) return;
+                
+                const industryGroup = document.createElement('div');
+                industryGroup.className = 'industry-group';
+                
+                // Industry header
+                const header = document.createElement('div');
+                header.className = 'industry-header';
+                header.innerHTML = `
+                    <span class="industry-emoji">${industryData.emoji}</span>
+                    <h3 class="industry-title">${industryName}</h3>
+                    <span class="industry-count">${industryData.cases.length} projects</span>
+                `;
+                industryGroup.appendChild(header);
+                
+                // Cases grid
+                const grid = document.createElement('div');
+                grid.className = 'cases-grid';
+                
+                // Add first 3 cases
+                industryData.cases.slice(0, 3).forEach(caseItem => {
+                    grid.appendChild(createCaseCard(caseItem, false));
+                });
+                
+                // Add hidden cases
+                industryData.cases.slice(3).forEach(caseItem => {
+                    grid.appendChild(createCaseCard(caseItem, true));
+                });
+                
+                industryGroup.appendChild(grid);
+                
+                // Add show more button if there are more than 3 cases
+                if (industryData.cases.length > 3) {
+                    const btn = document.createElement('button');
+                    btn.className = 'show-more-btn';
+                    btn.textContent = `Show ${industryData.cases.length - 3} more projects`;
+                    btn.onclick = function() {
+                        const hiddenCards = grid.querySelectorAll('.case-card.hidden');
+                        if (hiddenCards.length > 0) {
+                            hiddenCards.forEach(card => card.classList.remove('hidden'));
+                            this.textContent = `Show less`;
+                            this.classList.add('active');
+                        } else {
+                            industryData.cases.slice(3).forEach((_, index) => {
+                                grid.children[index + 3].classList.add('hidden');
+                            });
+                            this.textContent = `Show ${industryData.cases.length - 3} more projects`;
+                            this.classList.remove('active');
+                        }
+                    };
+                    industryGroup.appendChild(btn);
+                }
+                
+                container.appendChild(industryGroup);
+            });
+        }
+
+        function createCaseCard(caseItem, hidden = false) {
+            const card = document.createElement('div');
+            const industryClass = caseItem.industry === 'Food delivery' ? 'food-delivery' : 'ride-hailing';
+            card.className = `case-card ${industryClass} ${hidden ? 'hidden' : ''}`;
+            card.onclick = () => openModal(caseItem);
+            
+            card.innerHTML = `
+                <div class="case-header">
+                    <h3 class="case-title">${caseItem.title}</h3>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h4>Methods</h4>
+                        <p>${caseItem.actions}</p>
+                    </div>
+                    <div class="case-section">
+                        <h4>Key Results</h4>
+                        <div class="case-results">
+                            <ul>
+                                ${caseItem.keyResults.map(result => `<li>${result}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-tags">
+                    ${caseItem.tags.map(tag => `<span class="case-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Modal functionality
+        function openModal(caseItem) {
+            const modal = document.getElementById('caseModal');
+            const modalHeader = document.getElementById('modalHeader');
+            const industryClass = caseItem.industry === 'Food delivery' ? 'food-delivery' : 'ride-hailing';
+            
+            modalHeader.className = `modal-header ${industryClass}`;
+            document.getElementById('modalTitle').textContent = caseItem.title;
+            document.getElementById('modalIndustry').textContent = caseItem.industry;
+            
+            document.getElementById('modalBody').innerHTML = `
+                <div class="case-section">
+                    <h4>Context & Challenge</h4>
+                    <p>${caseItem.context}</p>
+                </div>
+                <div class="case-section">
+                    <h4>Research Methods</h4>
+                    <p>${caseItem.actions}</p>
+                </div>
+                <div class="case-section">
+                    <h4>Detailed Findings & Impact</h4>
+                    <p>${caseItem.results}</p>
+                </div>
+                <div class="case-section">
+                    <h4>Key Results</h4>
+                    <div class="case-results">
+                        <ul>
+                            ${caseItem.keyResults.map(result => `<li>${result}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <div class="case-section">
+                    <h4>Tags</h4>
+                    <div class="case-tags" style="padding: 0; background: transparent; border: none;">
+                        ${caseItem.tags.map(tag => `<span class="case-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('caseModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('caseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderCasesGrouped();
+    </script>
+</body>
+</html>
